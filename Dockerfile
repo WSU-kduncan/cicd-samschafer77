@@ -1,6 +1,6 @@
 FROM ubuntu 
 RUN apt-get update 
-RUN apt-get install –y apache2 
+RUN apt-get install apache2 
 RUN apt-get install –y apache2-utils 
 RUN apt-get clean
 COPY website/index.html /var/www/html/ 

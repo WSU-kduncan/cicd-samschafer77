@@ -18,3 +18,50 @@
 **How to View the Project**
 - To view the project go to ip address:
     - 34.193.205.151
+
+**Project6 Part2**
+
+**How to Create a DockerHub Repo**
+- I created an account on DockerHub and then created a free public repo on my account.
+
+**Allow DockerHub authentication via CLI using Dockhub credentials**
+- Access tokens can be created for authentication purposes, these are treated like passwords.
+
+**Configure GitHub Secrets**
+- Both username and password are needed to be added to GitHub secrets in the security tab. 
+- To set these secrets you must click add secret then the secret variable name and then insert its contents in the text box below.
+
+**Configure GitHub Workflow**
+- I created a GitHub workflow in a yml file from an auto generated yml Docker Image template created by GitHub. 
+- Inside of this auto generated yml file I created a env: and added a user and password variable by doing "${{secrets.DOCKER_PASSWORD}}" and DOCKER_USER: ${{secrets.DOCKER_USER}}for example.
+- I also had to add my username and the repo name "samschafer77/project06" to the yml to give it the name of the repo that to build in.
+- Finally I had to push to the DockerHub after the build and I had to add "${{secrets.DOCKER_USER}}/project06" to the push command.
+**Here is my .yml for easy viewing**
+
+    name: Docker Image CI
+
+    on:
+      push:
+        branches: [ main ]
+      pull_request:
+        branches: [ main ]
+
+    jobs:
+
+      build:
+
+        runs-on: ubuntu-latest
+
+        steps:
+        - uses: actions/checkout@v2
+        - name: docker login
+          env: 
+            DOCKER_USER: ${{secrets.DOCKER_USER}}
+            DOCKER_PASSWORD: ${{secrets.DOCKER_PASSWORD}}
+          run:
+            docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
+        - name: Build the Docker image
+          run: docker build . --file Dockerfile --tag samschafer77/project06
+
+        - name: Docker Push
+          run: docker push ${{secrets.DOCKER_USER}}/project06

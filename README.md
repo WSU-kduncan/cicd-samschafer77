@@ -36,32 +36,33 @@
 - Inside of this auto generated yml file I created a env: and added a user and password variable by doing "${{secrets.DOCKER_PASSWORD}}" and DOCKER_USER: ${{secrets.DOCKER_USER}}for example.
 - I also had to add my username and the repo name "samschafer77/project06" to the yml to give it the name of the repo that to build in.
 - Finally I had to push to the DockerHub after the build and I had to add "${{secrets.DOCKER_USER}}/project06" to the push command.
+
 **Here is my .yml for easy viewing**
 
-    name: Docker Image CI
+        name: Docker Image CI
 
-    on:
-      push:
-        branches: [ main ]
-      pull_request:
-        branches: [ main ]
+        on:
+          push:
+            branches: [ main ]
+          pull_request:
+            branches: [ main ]
 
-    jobs:
+        jobs:
 
-      build:
+          build:
 
-        runs-on: ubuntu-latest
+            runs-on: ubuntu-latest
 
-        steps:
-        - uses: actions/checkout@v2
-        - name: docker login
-          env: 
-            DOCKER_USER: ${{secrets.DOCKER_USER}}
-            DOCKER_PASSWORD: ${{secrets.DOCKER_PASSWORD}}
-          run:
-            docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
-        - name: Build the Docker image
-          run: docker build . --file Dockerfile --tag samschafer77/project06
+            steps:
+            - uses: actions/checkout@v2
+            - name: docker login
+              env: 
+                DOCKER_USER: ${{secrets.DOCKER_USER}}
+                DOCKER_PASSWORD: ${{secrets.DOCKER_PASSWORD}}
+              run:
+                docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
+            - name: Build the Docker image
+              run: docker build . --file Dockerfile --tag samschafer77/project06
 
-        - name: Docker Push
-          run: docker push ${{secrets.DOCKER_USER}}/project06
+            - name: Docker Push
+              run: docker push ${{secrets.DOCKER_USER}}/project06

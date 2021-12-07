@@ -66,3 +66,15 @@
 
             - name: Docker Push
               run: docker push ${{secrets.DOCKER_USER}}/project06
+  
+**Project6 Part3**
+
+**Pulling the image**
+- I pulled the dockerhub image using the "docker pull samschafer77/project06:latest" command.
+
+![Screenshot](images/docker_deployment.png)
+
+**Running the container**
+- I ran the container using the "sudo docker run -it -p 80:80 samschafer77/project06" command.
+
+![Screenshot](images/docker_run.png)

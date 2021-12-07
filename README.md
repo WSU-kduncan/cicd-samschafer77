@@ -2,7 +2,7 @@
 **Sam Schafer**
 
 **Project Overview**
-- I have created a docker file container that when built then ran will get an apache2 webserver up and running on a linux machine.
+- I have created a docker file container that when built and ran will get an apache2 webserver up and running on a linux machine.
 
 **Docker Install and Dependencies**
 - On an Ubuntu server I ran sudo snap install docker to install docker.

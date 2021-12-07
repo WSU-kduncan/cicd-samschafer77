@@ -16,7 +16,7 @@
     - sudo docker run -it -p 80:80 apache-server:v1
 
 **How to View the Project**
-- To view the project go to ip address:
+- To view the project go to ip address on port 80:
     - 34.193.205.151
 
 **Project6 Part2**

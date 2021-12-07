@@ -78,3 +78,7 @@
 - I ran the container using the "sudo docker run -it -p 80:80 samschafer77/project06" command.
 
 ![Screenshot](images/docker_run.png)
+
+**How to view webpage**
+- I pulled and ran the container on the same ubuntu server as in part 1 because AWS console has been down as of 12/7 and I could not create a new server.
+  - The IP address is still: 34.193.205.151
